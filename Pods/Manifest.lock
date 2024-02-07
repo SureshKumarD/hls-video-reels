@@ -1,0 +1,28 @@
+PODS:
+  - Cache (6.0.0)
+  - GCDWebServer (3.5.4):
+    - GCDWebServer/Core (= 3.5.4)
+  - GCDWebServer/Core (3.5.4)
+  - SDWebImage (5.18.10):
+    - SDWebImage/Core (= 5.18.10)
+  - SDWebImage/Core (5.18.10)
+
+DEPENDENCIES:
+  - Cache (~> 6.0.0)
+  - GCDWebServer
+  - SDWebImage
+
+SPEC REPOS:
+  trunk:
+    - Cache
+    - GCDWebServer
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  Cache: 4ca7e00363fca5455f26534e5607634c820ffc2d
+  GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
+  SDWebImage: fc8f2d48bbfd72ef39d70e981bd24a3f3be53fec
+
+PODFILE CHECKSUM: df93592830bac01e39bd4e543faf63882d57f42c
+
+COCOAPODS: 1.15.0
