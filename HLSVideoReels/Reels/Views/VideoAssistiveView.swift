@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-enum AssitiveOptions: Codable, Equatable {
+enum AssistiveOption: Codable, Equatable {
     
     case like(likes: Int), dislike, comment(comments: Int), share, remix, profile(urlString: String)
     
@@ -90,12 +90,10 @@ final class VideoAssistiveView: UIView {
             collectionView.topAnchor.constraint(equalTo: self.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-    
-            
+            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
         
-        collectionViewHeightAnchor = collectionView.heightAnchor.constraint(equalToConstant: 200)
+        collectionViewHeightAnchor = collectionView.heightAnchor.constraint(equalToConstant: 0)
         collectionViewHeightAnchor?.isActive = true
     }
 }
@@ -104,7 +102,7 @@ extension VideoAssistiveView {
     
     func configure(video: Reel) {
         self.viewModel.reel = video
-        let optionCount = CGFloat(viewModel.assitiveOptions.count)
+        let optionCount = CGFloat(viewModel.assistiveOptions.count)
         collectionViewHeightAnchor?.constant = (optionCount * VideoAssistiveView.assitiveWidgetSide) + (optionCount - 1) * VideoAssistiveView.assitiveWidgetPadding
         collectionView.reloadData()
     }
@@ -112,14 +110,14 @@ extension VideoAssistiveView {
 
 extension VideoAssistiveView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.assitiveOptions.count
+        return viewModel.assistiveOptions.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ActionableImageCell.self), for: indexPath) as? ActionableImageCell else {
             return UICollectionViewCell()
         }
-        cell.configure(option: viewModel.assitiveOptions[indexPath.item])
+        cell.configure(option: viewModel.assistiveOptions[indexPath.item])
         return cell
     }
     
@@ -129,7 +127,7 @@ extension VideoAssistiveView: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let option = viewModel.assitiveOptions[indexPath.item]
+        let option = viewModel.assistiveOptions[indexPath.item]
         print("Selected \(option)")
     }
 }

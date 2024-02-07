@@ -58,15 +58,6 @@ final class ReelsViewController: UIViewController {
         return stackView
     }()
     
-//    private let videoUrls = [
-//        "https://assets.afcdn.com/video49/20210722/v_645516.m3u8",
-//        "https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/master.m3u8",
-//        "http://sample.vodobox.net/skate_phantom_flex_4k/skate_phantom_flex_4k.m3u8",
-//        "http://playertest.longtailvideo.com/adaptive/wowzaid3/playlist.m3u8",
-//        "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
-//        "https://diceyk6a7voy4.cloudfront.net/e78752a1-2e83-43fa-85ae-3d508be29366/hls/fitfest-sample-1_Ott_Hls_Ts_Avc_Aac_16x9_1280x720p_30Hz_6.0Mbps_qvbr.m3u8"
-//    ]
-
     private var abstractPlayer: AVPlayer?
     private let viewModel: ReelsViewModel
     init(viewModel: ReelsViewModel) {

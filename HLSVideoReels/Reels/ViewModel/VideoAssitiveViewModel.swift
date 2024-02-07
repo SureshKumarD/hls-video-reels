@@ -9,10 +9,10 @@ import Foundation
 
 final class VideoAssitiveViewModel {
     
-    var assitiveOptions = [AssitiveOptions]()
+    var assistiveOptions = [AssistiveOption]()
     var reel: Reel? {
         didSet {
-            assitiveOptions.removeAll()
+            assistiveOptions.removeAll()
             composeAssitiveOptions()
         }
     }
@@ -21,12 +21,12 @@ final class VideoAssitiveViewModel {
 }
 extension VideoAssitiveViewModel {
     private func composeAssitiveOptions() {
-        assitiveOptions.append(.like(likes: reel?.likes ?? 0))
-        assitiveOptions.append(.dislike)
-        assitiveOptions.append(.comment(comments: reel?.comments ?? 0))
-        assitiveOptions.append(.share)
-        assitiveOptions.append(.remix)
-        assitiveOptions.append(.profile(urlString: reel?.profileImageUrl ?? ""))
+        assistiveOptions.append(.like(likes: reel?.likes ?? 0))
+        assistiveOptions.append(.dislike)
+        assistiveOptions.append(.comment(comments: reel?.comments ?? 0))
+        assistiveOptions.append(.share)
+        assistiveOptions.append(.remix)
+        assistiveOptions.append(.profile(urlString: reel?.profileImageUrl ?? ""))
     }
 }
   

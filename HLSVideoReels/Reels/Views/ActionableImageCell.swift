@@ -31,7 +31,7 @@ final class ActionableImageCell: UICollectionViewCell {
 
     // MARK: - Private Variables
     private var redirectionUrl: String?
-    var option: AssitiveOptions?
+    var option: AssistiveOption?
 
     // MARK: - Life Cycle Methods
     override func layoutSubviews() {
@@ -63,7 +63,7 @@ final class ActionableImageCell: UICollectionViewCell {
         ])
     }
     
-    func configure(option: AssitiveOptions) {
+    func configure(option: AssistiveOption) {
         self.option = option
         titleLabel.text = option.description
         switch option {

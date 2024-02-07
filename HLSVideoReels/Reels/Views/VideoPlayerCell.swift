@@ -44,15 +44,6 @@ final class VideoPlayerCell: UICollectionViewCell {
         return view
     }()
     
-    var thumNailImage: UIImage? {
-        guard let url = self.url else {return nil }
-        let asset = AVAsset(url: url)
-        let imageGenerator = AVAssetImageGenerator(asset: asset)
-        let time = CMTimeMake(value: 1, timescale: 1)
-        let imageRef = try! imageGenerator.copyCGImage(at: time, actualTime: nil)
-        return UIImage(cgImage:imageRef)
-    }
-
     private var url: URL?
     var shouldShowWidgets = true
     private var pausedTime: CMTime!
@@ -108,13 +99,8 @@ final class VideoPlayerCell: UICollectionViewCell {
         setupBottomGradientLayer(playerView: playerView)
         playerView.addSubview(videoDetailView)
         playerView.addSubview(videoAssistiveView)
-//        playerView.addSubview(playDurationLabel)
         playerView.addSubview(progressSlider)
        
-        
-       
-      
-        
         NSLayoutConstraint.activate([
             playerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             playerView.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -131,10 +117,7 @@ final class VideoPlayerCell: UICollectionViewCell {
             
             videoAssistiveView.rightAnchor.constraint(equalTo: playerView.rightAnchor, constant: -4),
             videoAssistiveView.bottomAnchor.constraint(equalTo: videoDetailView.topAnchor, constant: 0),
-            videoAssistiveView.widthAnchor.constraint(equalToConstant: VideoAssistiveView.assitiveWidgetSide),
-
-            
-            
+            videoAssistiveView.widthAnchor.constraint(equalToConstant: VideoAssistiveView.assitiveWidgetSide)
         ])
         
         addTapGesture()
@@ -146,7 +129,6 @@ final class VideoPlayerCell: UICollectionViewCell {
             UIColor.black.withAlphaComponent(0.6).cgColor,
             UIColor.clear.cgColor
         ]
-    
         gradient.locations = [0, 1]
         return gradient
     }
@@ -165,7 +147,6 @@ final class VideoPlayerCell: UICollectionViewCell {
         bottomGradient.frame.origin = CGPoint(x: 0, y: contentView.bounds.height - size.height)
         bottomGradient.frame.size = size
         playerView.layer.addSublayer(bottomGradient)
-        
         playerView.layoutIfNeeded()
     }
     
@@ -232,11 +213,9 @@ final class VideoPlayerCell: UICollectionViewCell {
             case .began:
                 self.removeTimerObserver()
                 self.pause(reason: .waitingKeepUp)
-                
                 break
             case .moved:
                 // handle drag moved
-                
                 break
             case .ended:
                 removeTimerObserver()
@@ -244,7 +223,6 @@ final class VideoPlayerCell: UICollectionViewCell {
                     self?.timeObserverSetup()
                     self?.resume()
                 }
-                
                 break
             default:
                 break
@@ -267,7 +245,7 @@ final class VideoPlayerCell: UICollectionViewCell {
             DispatchQueue.main.async {
                 guard let self = self else {return }
                 var currentTime = elapsedTime
-                print("observer \(Float(CMTimeGetSeconds(elapsedTime)))")
+//                print("observer \(Float(CMTimeGetSeconds(elapsedTime)))")
                 guard self.progressSlider.isTracking == false else { return }
                 if self.isPlayRequested == false {
                     currentTime = self.pausedTime
@@ -276,7 +254,7 @@ final class VideoPlayerCell: UICollectionViewCell {
             }
             
         })
-        print(timeObserver)
+//        print(timeObserver)
     }
     
     func removeTimerObserver() {
